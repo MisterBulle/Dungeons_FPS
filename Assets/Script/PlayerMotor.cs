@@ -7,11 +7,14 @@ public class PlayerMotor : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     public float speed = 5f;
+    public float MaxSpeed = 10f;
 
     public bool isGrounded;
     public float gravity = -9.81f;
     
     public float JumpHeight = 3f;
+
+    //public bool sprinting = false;
 
     void Start()
     {
@@ -46,6 +49,17 @@ public class PlayerMotor : MonoBehaviour
         if(isGrounded)
         {
             playerVelocity.y = Mathf.Sqrt(JumpHeight * -3.0f * gravity);
+        }
+    }
+    public void Sprint(bool isHolding)
+    {
+        if (isHolding)
+        {
+            speed = MaxSpeed;
+        }
+        else
+        {
+            speed = 5f;
         }
     }
 }

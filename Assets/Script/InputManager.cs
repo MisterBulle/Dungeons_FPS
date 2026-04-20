@@ -20,9 +20,14 @@ public class InputManager : MonoBehaviour
         onFoot = playerControll.OnFoot;
         PM = GetComponent<PlayerMotor>();
         PL = GetComponent<PlayerLook>();
+
         //Event de jump, quand on appuie sur le bouton de jump, on appelle la fonction jump du player motor
         //Event : 3 états : started, performed, canceled
-        onFoot.Jump.performed += ctx => PM.Jump();    
+        onFoot.Jump.performed += ctx => PM.Jump();
+
+        //Pour le sprint
+        onFoot.Sprint.performed += ctx => PM.Sprint(true);
+        onFoot.Sprint.canceled += ctx => PM.Sprint(false);
         }
 
     // Update is called once per frame
