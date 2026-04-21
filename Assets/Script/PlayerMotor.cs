@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class PlayerMotor : MonoBehaviour
 {
@@ -14,7 +16,14 @@ public class PlayerMotor : MonoBehaviour
     
     public float JumpHeight = 3f;
 
-    //public bool sprinting = false;
+    //Dashing
+    private bool canDash = false;
+    private bool isDashing = false;
+
+    [Header("Dash settings")]
+    public float dashingPower = 10f;
+    public float dashingTime = 0.2f;
+    public float dashingCooldown = 1f;
 
     void Start()
     {
@@ -61,5 +70,38 @@ public class PlayerMotor : MonoBehaviour
         {
             speed = 5f;
         }
+    }
+
+    //Fonction pour lancer Dash
+    public void StartDash()
+    {
+        if (!isDashing)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
+    public IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        //float originalGravity = gravity;
+        //gravity = 0f;
+        //playerVelocity.y = 0f;
+
+
+        float startTime = Time.time;
+        while (Time.time < startTime + dashingTime)
+        {
+            Vector3 dashDirection = transform.forward;
+            controller.Move(dashDirection * dashingPower * Time.deltaTime);
+            yield return null; // attend la frame suivante
+        }   
+
+        //gravity = originalGravity;
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
     }
 }
