@@ -1128,6 +1128,8 @@ MonoBehaviour:
   isGrounded: 0
   gravity: -9.81
   JumpHeight: 2
+  canDash: 1
+  isDashing: 0
   dashingPower: 25
   dashingTime: 0.25
   dashingCooldown: 1

@@ -17,8 +17,8 @@ public class PlayerMotor : MonoBehaviour
     public float JumpHeight = 3f;
 
     //Dashing
-    private bool canDash = false;
-    private bool isDashing = false;
+    public bool canDash = true;
+    public bool isDashing = false;
 
     [Header("Dash settings")]
     public float dashingPower = 10f;
@@ -73,32 +73,38 @@ public class PlayerMotor : MonoBehaviour
     }
 
     //Fonction pour lancer Dash
-    public void StartDash()
+    public void StartDash(Vector2 input)
     {
-        if (!isDashing)
+        if (!isDashing && canDash)
         {
-            StartCoroutine(Dash());
+            StartCoroutine(Dash(input));
         }
     }
 
-    public IEnumerator Dash()
+    public IEnumerator Dash(Vector2 input)
     {
         canDash = false;
         isDashing = true;
-        //float originalGravity = gravity;
-        //gravity = 0f;
-        //playerVelocity.y = 0f;
 
+        Vector3 dashDirection;
+
+        if (input.magnitude > 0.1f)
+        {
+            dashDirection = transform.TransformDirection(new Vector3(input.x, 0f, input.y)).normalized;
+        }
+        else
+        {
+            dashDirection = transform.forward;
+        }
 
         float startTime = Time.time;
+
         while (Time.time < startTime + dashingTime)
         {
-            Vector3 dashDirection = transform.forward;
             controller.Move(dashDirection * dashingPower * Time.deltaTime);
-            yield return null; // attend la frame suivante
-        }   
+            yield return null;
+        }
 
-        //gravity = originalGravity;
         isDashing = false;
 
         yield return new WaitForSeconds(dashingCooldown);

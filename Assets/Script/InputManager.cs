@@ -30,7 +30,7 @@ public class InputManager : MonoBehaviour
         onFoot.Sprint.canceled += ctx => PM.Sprint(false);
 
         //Pour le dash
-        onFoot.Dash.performed += ctx => PM.StartDash();
+        onFoot.Dash.performed += ctx => PM.StartDash(onFoot.Movement.ReadValue<Vector2>());
     }
 
     // Update is called once per frame
