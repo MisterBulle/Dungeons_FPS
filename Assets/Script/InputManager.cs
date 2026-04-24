@@ -12,6 +12,9 @@ public class InputManager : MonoBehaviour
 
     private PlayerLook PL;
 
+    //Gun en public car il est pas dans Player
+    public Gun gun;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -20,6 +23,7 @@ public class InputManager : MonoBehaviour
         onFoot = playerControll.OnFoot;
         PM = GetComponent<PlayerMotor>();
         PL = GetComponent<PlayerLook>();
+        //gun = GetComponent<Gun>();
 
         //Event de jump, quand on appuie sur le bouton de jump, on appelle la fonction jump du player motor
         //Event : 3 états : started, performed, canceled
@@ -31,6 +35,16 @@ public class InputManager : MonoBehaviour
 
         //Pour le dash
         onFoot.Dash.performed += ctx => PM.StartDash(onFoot.Movement.ReadValue<Vector2>());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Pour le tir - check continuously if button is held
+        if(onFoot.Shoot.IsPressed())
+        {
+            gun.Shoot();
+        }
     }
 
     // Update is called once per frame
