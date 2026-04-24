@@ -3,9 +3,9 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    private PlayerControlls_PI playerControll;
+    public PlayerControlls_PI playerControll;
     //private PlayerControlls_PI onFoot;
-    PlayerControlls_PI.OnFootActions onFoot;
+    public PlayerControlls_PI.OnFootActions onFoot;
 
     //Call function
     private PlayerMotor PM;
