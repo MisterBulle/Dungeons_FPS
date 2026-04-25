@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour
 
     //Gun en public car il est pas dans Player
     public Gun gun;
+    public WeaponSwitching weaponSwitching;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -35,6 +36,16 @@ public class InputManager : MonoBehaviour
 
         //Pour le dash
         onFoot.Dash.performed += ctx => PM.StartDash(onFoot.Movement.ReadValue<Vector2>());
+
+        //WEAPON SWITCHING
+        onFoot.WeaponSwitchUp.performed += ctx => weaponSwitching.WeaponSwitchUp_Function();
+        onFoot.WeaponSwitchDown.performed += ctx => weaponSwitching.WeaponSwitchDown_Function();
+
+        //WEAPON KEY
+        onFoot.Weapon_0.performed += ctx => weaponSwitching.Weapon_Number_Key(0);
+        onFoot.Weapon_1.performed += ctx => weaponSwitching.Weapon_Number_Key(1);
+        onFoot.Weapon_2.performed += ctx => weaponSwitching.Weapon_Number_Key(2);
+
     }
 
     // Update is called once per frame

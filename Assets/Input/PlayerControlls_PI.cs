@@ -154,6 +154,51 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WeaponSwitchUp"",
+                    ""type"": ""Value"",
+                    ""id"": ""86ee50a2-7b8d-47c5-bc41-fd73df9005cf"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""WeaponSwitchDown"",
+                    ""type"": ""Value"",
+                    ""id"": ""da4372ce-3cef-40ab-a590-060f96d6b9a7"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Weapon_0"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d107af0-8735-4a08-8f8c-ea64317553f0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Weapon_1"",
+                    ""type"": ""Button"",
+                    ""id"": ""cff4c4a4-bbb1-4bbc-b5d6-4226155c7ac9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Weapon_2"",
+                    ""type"": ""Button"",
+                    ""id"": ""ffabc444-84e2-456d-84e9-d35007036fc1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -396,6 +441,72 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0bf9c1a7-6061-477c-917b-c6c163cfbee2"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponSwitchUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""abf68d97-d7e1-4b9e-9c5b-fef135109c78"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponSwitchUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dec892a4-4e2a-4350-a6a4-a088355a1c02"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponSwitchDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""39cc2354-99e2-4bdd-8beb-3ea9caa15eb1"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Weapon_0"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""935d49dd-93f2-462a-8e2d-0b4ca7e09d45"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Weapon_1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1078dfef-eb9e-4bbc-8f94-ea4a9a4cc1fd"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Weapon_2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -929,6 +1040,11 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
         m_OnFoot_Dash = m_OnFoot.FindAction("Dash", throwIfNotFound: true);
         m_OnFoot_Interact = m_OnFoot.FindAction("Interact", throwIfNotFound: true);
         m_OnFoot_Shoot = m_OnFoot.FindAction("Shoot", throwIfNotFound: true);
+        m_OnFoot_WeaponSwitchUp = m_OnFoot.FindAction("WeaponSwitchUp", throwIfNotFound: true);
+        m_OnFoot_WeaponSwitchDown = m_OnFoot.FindAction("WeaponSwitchDown", throwIfNotFound: true);
+        m_OnFoot_Weapon_0 = m_OnFoot.FindAction("Weapon_0", throwIfNotFound: true);
+        m_OnFoot_Weapon_1 = m_OnFoot.FindAction("Weapon_1", throwIfNotFound: true);
+        m_OnFoot_Weapon_2 = m_OnFoot.FindAction("Weapon_2", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1029,6 +1145,11 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Dash;
     private readonly InputAction m_OnFoot_Interact;
     private readonly InputAction m_OnFoot_Shoot;
+    private readonly InputAction m_OnFoot_WeaponSwitchUp;
+    private readonly InputAction m_OnFoot_WeaponSwitchDown;
+    private readonly InputAction m_OnFoot_Weapon_0;
+    private readonly InputAction m_OnFoot_Weapon_1;
+    private readonly InputAction m_OnFoot_Weapon_2;
     /// <summary>
     /// Provides access to input actions defined in input action map "OnFoot".
     /// </summary>
@@ -1068,6 +1189,26 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "OnFoot/Shoot".
         /// </summary>
         public InputAction @Shoot => m_Wrapper.m_OnFoot_Shoot;
+        /// <summary>
+        /// Provides access to the underlying input action "OnFoot/WeaponSwitchUp".
+        /// </summary>
+        public InputAction @WeaponSwitchUp => m_Wrapper.m_OnFoot_WeaponSwitchUp;
+        /// <summary>
+        /// Provides access to the underlying input action "OnFoot/WeaponSwitchDown".
+        /// </summary>
+        public InputAction @WeaponSwitchDown => m_Wrapper.m_OnFoot_WeaponSwitchDown;
+        /// <summary>
+        /// Provides access to the underlying input action "OnFoot/Weapon_0".
+        /// </summary>
+        public InputAction @Weapon_0 => m_Wrapper.m_OnFoot_Weapon_0;
+        /// <summary>
+        /// Provides access to the underlying input action "OnFoot/Weapon_1".
+        /// </summary>
+        public InputAction @Weapon_1 => m_Wrapper.m_OnFoot_Weapon_1;
+        /// <summary>
+        /// Provides access to the underlying input action "OnFoot/Weapon_2".
+        /// </summary>
+        public InputAction @Weapon_2 => m_Wrapper.m_OnFoot_Weapon_2;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1115,6 +1256,21 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @WeaponSwitchUp.started += instance.OnWeaponSwitchUp;
+            @WeaponSwitchUp.performed += instance.OnWeaponSwitchUp;
+            @WeaponSwitchUp.canceled += instance.OnWeaponSwitchUp;
+            @WeaponSwitchDown.started += instance.OnWeaponSwitchDown;
+            @WeaponSwitchDown.performed += instance.OnWeaponSwitchDown;
+            @WeaponSwitchDown.canceled += instance.OnWeaponSwitchDown;
+            @Weapon_0.started += instance.OnWeapon_0;
+            @Weapon_0.performed += instance.OnWeapon_0;
+            @Weapon_0.canceled += instance.OnWeapon_0;
+            @Weapon_1.started += instance.OnWeapon_1;
+            @Weapon_1.performed += instance.OnWeapon_1;
+            @Weapon_1.canceled += instance.OnWeapon_1;
+            @Weapon_2.started += instance.OnWeapon_2;
+            @Weapon_2.performed += instance.OnWeapon_2;
+            @Weapon_2.canceled += instance.OnWeapon_2;
         }
 
         /// <summary>
@@ -1147,6 +1303,21 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @WeaponSwitchUp.started -= instance.OnWeaponSwitchUp;
+            @WeaponSwitchUp.performed -= instance.OnWeaponSwitchUp;
+            @WeaponSwitchUp.canceled -= instance.OnWeaponSwitchUp;
+            @WeaponSwitchDown.started -= instance.OnWeaponSwitchDown;
+            @WeaponSwitchDown.performed -= instance.OnWeaponSwitchDown;
+            @WeaponSwitchDown.canceled -= instance.OnWeaponSwitchDown;
+            @Weapon_0.started -= instance.OnWeapon_0;
+            @Weapon_0.performed -= instance.OnWeapon_0;
+            @Weapon_0.canceled -= instance.OnWeapon_0;
+            @Weapon_1.started -= instance.OnWeapon_1;
+            @Weapon_1.performed -= instance.OnWeapon_1;
+            @Weapon_1.canceled -= instance.OnWeapon_1;
+            @Weapon_2.started -= instance.OnWeapon_2;
+            @Weapon_2.performed -= instance.OnWeapon_2;
+            @Weapon_2.canceled -= instance.OnWeapon_2;
         }
 
         /// <summary>
@@ -1431,6 +1602,41 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShoot(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "WeaponSwitchUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnWeaponSwitchUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "WeaponSwitchDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnWeaponSwitchDown(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Weapon_0" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnWeapon_0(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Weapon_1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnWeapon_1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Weapon_2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnWeapon_2(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
