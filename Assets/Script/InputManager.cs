@@ -51,10 +51,22 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Pour le tir - check continuously if button is held
-        if(onFoot.Shoot.IsPressed())
+        // Find the currently active weapon by checking which child is active
+        Gun activeGun = null;
+        
+        foreach (Transform weapon in weaponSwitching.transform)
         {
-            gun.Shoot();
+            if (weapon.gameObject.activeInHierarchy)
+            {
+                activeGun = weapon.GetComponent<Gun>();
+                break;
+            }
+        }
+        
+        // Only shoot if we have a gun and it's active
+        if (activeGun != null && onFoot.Shoot.IsPressed())
+        {
+            activeGun.Shoot();
         }
     }
 

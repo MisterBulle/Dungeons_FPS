@@ -241,6 +241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 227555913}
   - component: {fileID: 227555914}
+  - component: {fileID: 227555915}
   m_Layer: 0
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -279,6 +280,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSwitching
   selectedWeapon: 0
+--- !u!95 &227555915
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227555912}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 02fcc4df3a2e32c488302ce7da2893ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,9 +838,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1869809d0f6ff294ebcde31d48f1d917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gun
-  damage: 10
+  damage: 20
   range: 100
-  fireRate: 10
+  fireRate: 1
+  maxAmmo: 10
+  currentAmmo: 0
+  reloadTime: 2
+  animator: {fileID: 227555915}
   camera: {fileID: 330585545}
 --- !u!65 &639722797
 BoxCollider:
@@ -1664,7 +1691,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gun
   damage: 10
   range: 100
-  fireRate: 10
+  fireRate: 5
+  maxAmmo: 10
+  currentAmmo: 0
+  reloadTime: 1
+  animator: {fileID: 227555915}
   camera: {fileID: 330585545}
 --- !u!65 &1165013594
 BoxCollider:
@@ -2042,8 +2073,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLook
   cam: {fileID: 330585545}
-  xSensitivity: 20
-  ySensitivity: 20
+  xSensitivity: 80
+  ySensitivity: 80
 --- !u!114 &1322618814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2592,6 +2623,10 @@ MonoBehaviour:
   damage: 10
   range: 100
   fireRate: 10
+  maxAmmo: 10
+  currentAmmo: 0
+  reloadTime: 2
+  animator: {fileID: 227555915}
   camera: {fileID: 330585545}
 --- !u!1 &2009535371
 GameObject:
