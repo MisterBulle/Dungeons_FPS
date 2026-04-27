@@ -32,6 +32,7 @@ public class PlayerInteract : MonoBehaviour
         //Si le raycast touche quelque chose avec le tag mask
         if (Physics.Raycast(ray, out hitInfo, interactDistance,mask))
         {
+            //Check for Interactable objects
             if(hitInfo.collider.GetComponent<Interactable>() != null)
             {
                 //Affichage du message de l'objet interactable
@@ -46,6 +47,12 @@ public class PlayerInteract : MonoBehaviour
                 {
                     interactable.BaseInteract();   
                 }
+            }
+            
+            //Check for AmmoPickUp - auto-collect when walking into it
+            if(hitInfo.collider.GetComponent<AmmoPickUp>() != null)
+            {
+                hitInfo.collider.GetComponent<AmmoPickUp>().Collect();
             }
         }
 

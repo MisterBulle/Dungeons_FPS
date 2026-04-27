@@ -10,17 +10,22 @@ public class Gun : MonoBehaviour
     private float nextTimeToFire = 0f;
 
     // Ammo system
-    public int maxAmmo = 10;
+    public int maxAmmoPerRifle = 10;
     public int currentAmmo;
     public float reloadTime = 2f;
     private bool isReloading = false;
+
+    [Header("Ammo")]
+    public int maxAmmo = 180;
+    public int currentTotalAmmo;
 
     public Animator animator;
     public Camera camera;
 
     void Start()
     {
-        currentAmmo = maxAmmo;
+        currentAmmo = maxAmmoPerRifle;
+        currentTotalAmmo = maxAmmo;
     }
 
     void OnEnable()
@@ -85,7 +90,7 @@ public class Gun : MonoBehaviour
         animator.SetBool("Reloading", false);
         yield return new WaitForSeconds(0.25f);
 
-        currentAmmo = maxAmmo;
+        currentAmmo = maxAmmoPerRifle;
         isReloading = false;
     }
 }
