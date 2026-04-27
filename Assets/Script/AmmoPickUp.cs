@@ -4,12 +4,24 @@ public class AmmoPickUp : MonoBehaviour
 {
 
     public Gun gun;
-    public int ammoAmount = 30;
+    private int a;
 
-    public void Collect()
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Ammo collected!");
-        gun.currentTotalAmmo += ammoAmount;
-        Destroy(gameObject);
+        Debug.Log("Collision avec : " + other.tag);
+
+        if (other.CompareTag("Player"))
+        {
+            a = gun.currentTotalAmmo += gun.maxAmmoPerRifle;
+            //Pour ne pas qu'il dépasse son montant max de munitions
+            if (a > gun.maxAmmo)
+            {
+                gun.currentTotalAmmo = gun.maxAmmo;
+            }
+            if (gun.maxAmmo != gun.currentTotalAmmo)
+            {
+                Destroy(gameObject);;
+            }
+        }
     }
 }

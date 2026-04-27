@@ -840,12 +840,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Gun
   damage: 20
   range: 100
-  fireRate: 1
-  maxAmmoPerRifle: 10
-  currentAmmo: 0
+  fireRate: 5
   reloadTime: 2
   maxAmmo: 10
   currentTotalAmmo: 0
+  maxAmmoPerRifle: 8
+  currentAmmo: 0
   animator: {fileID: 227555915}
   camera: {fileID: 330585545}
 --- !u!65 &639722797
@@ -1498,7 +1498,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmmoPickUp
   gun: {fileID: 1165013593}
-  ammoAmount: 30
 --- !u!65 &1149672838
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1821,11 +1820,11 @@ MonoBehaviour:
   damage: 10
   range: 100
   fireRate: 5
-  maxAmmoPerRifle: 10
-  currentAmmo: 0
   reloadTime: 1
   maxAmmo: 180
   currentTotalAmmo: 0
+  maxAmmoPerRifle: 10
+  currentAmmo: 0
   animator: {fileID: 227555915}
   camera: {fileID: 330585545}
 --- !u!65 &1165013594
@@ -2027,9 +2026,9 @@ GameObject:
   - component: {fileID: 1322618813}
   - component: {fileID: 1322618814}
   - component: {fileID: 1322618815}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2221,7 +2220,7 @@ MonoBehaviour:
   interactDistance: 3
   mask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 64
 --- !u!114 &1322618815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2754,11 +2753,11 @@ MonoBehaviour:
   damage: 10
   range: 100
   fireRate: 10
-  maxAmmoPerRifle: 10
-  currentAmmo: 0
   reloadTime: 2
-  maxAmmo: 10
+  maxAmmo: 180
   currentTotalAmmo: 0
+  maxAmmoPerRifle: 30
+  currentAmmo: 0
   animator: {fileID: 227555915}
   camera: {fileID: 330585545}
 --- !u!1 &2009535371

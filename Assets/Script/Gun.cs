@@ -9,16 +9,16 @@ public class Gun : MonoBehaviour
 
     private float nextTimeToFire = 0f;
 
-    // Ammo system
-    public int maxAmmoPerRifle = 10;
-    public int currentAmmo;
     public float reloadTime = 2f;
     private bool isReloading = false;
 
     [Header("Ammo")]
     public int maxAmmo = 180;
     public int currentTotalAmmo;
+     public int maxAmmoPerRifle = 10;
+    public int currentAmmo;
 
+    [Header("References")]
     public Animator animator;
     public Camera camera;
 
@@ -36,25 +36,36 @@ public class Gun : MonoBehaviour
 
     void Update()
     {
-        if (isReloading)
-            return;
+        //if (isReloading)
+            //return;
 
-        if (currentAmmo <= 0)
+        /*if (currentAmmo <= 0)
         {
             if (gameObject.activeInHierarchy)
                 StartCoroutine(Reload());
             return;
-        }
+        }*/
     }
 
     public void Shoot()
     {
+        // Block shooting while reloading
+        if (isReloading)
+            return;
+
+        //Block shooting if no ammo left
+        if (currentAmmo <= 0 && currentTotalAmmo <= 0)
+        {
+            Debug.Log("Plus de munitions");
+            return;
+        }
+
         // Fire rate check
         if (Time.time < nextTimeToFire)
             return;
 
-        // Ammo check
-        if (currentAmmo <= 0)
+        // Ammo check - Auto Reload
+        if (currentAmmo <= 0 && currentTotalAmmo > 0)
         {
             if (gameObject.activeInHierarchy)
                 StartCoroutine(Reload());
@@ -91,6 +102,13 @@ public class Gun : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
         currentAmmo = maxAmmoPerRifle;
+
+        currentTotalAmmo -= maxAmmoPerRifle;
+        if (currentTotalAmmo < 0)
+        {
+            currentTotalAmmo = 0;
+        }
+
         isReloading = false;
     }
 }

@@ -392,7 +392,7 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b49192e8-3162-4020-9fce-fd57ae0a86a4"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
