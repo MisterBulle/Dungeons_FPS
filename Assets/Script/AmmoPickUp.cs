@@ -8,20 +8,34 @@ public class AmmoPickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision avec : " + other.tag);
+        //Debug.Log("Collision avec : " + other.tag);
+        a = gun.currentTotalAmmo;
 
         if (other.CompareTag("Player"))
         {
-            a = gun.currentTotalAmmo += gun.maxAmmoPerRifle;
+        Debug.Log("AAAA");
+            
+            if (a == gun.maxAmmo)
+            {
+                return;
+            }
+            else
+            {
+                a = gun.currentTotalAmmo += gun.maxAmmoPerRifle;
+                Destroy(gameObject);
+            }
+
             //Pour ne pas qu'il dépasse son montant max de munitions
+            
             if (a > gun.maxAmmo)
             {
                 gun.currentTotalAmmo = gun.maxAmmo;
+                //Destroy(gameObject);
             }
-            if (gun.maxAmmo != gun.currentTotalAmmo)
+            /*if (gun.maxAmmo != gun.currentTotalAmmo)
             {
                 Destroy(gameObject);;
-            }
+            }*/
         }
     }
 }
