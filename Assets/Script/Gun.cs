@@ -104,6 +104,7 @@ public class Gun : MonoBehaviour
 
         AmmoLeftInRifle = maxAmmoPerRifle - currentAmmo;
 
+        //Si il reste moins de munitions que le nombre max par chargeur
         if (currentTotalAmmo < maxAmmoPerRifle)
         {
             currentAmmo = currentTotalAmmo;

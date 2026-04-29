@@ -98,11 +98,13 @@ public class InputManager : MonoBehaviour
 
     private void ReloadActiveWeapon()
     {
+
         Gun activeGun = GetActiveGun();
-        if (activeGun != null)
+        if(activeGun != null)
         {
-            activeGun.StartCoroutine(activeGun.Reload());
+            activeGun.StartCoroutine(activeGun.Reload());           
         }
+
     }
 
     private void OnEnable()
