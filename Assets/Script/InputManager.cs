@@ -46,6 +46,9 @@ public class InputManager : MonoBehaviour
         onFoot.Weapon_1.performed += ctx => weaponSwitching.Weapon_Number_Key(1);
         onFoot.Weapon_2.performed += ctx => weaponSwitching.Weapon_Number_Key(2);
 
+        //Reload
+        onFoot.Reload.performed += ctx => ReloadActiveWeapon();
+
     }
 
     // Update is called once per frame
@@ -79,6 +82,27 @@ public class InputManager : MonoBehaviour
     private void LateUpdate()
     {
         PL.ProcessLook(onFoot.Look.ReadValue<Vector2>());
+    }
+
+    private Gun GetActiveGun()
+    {
+        foreach (Transform weapon in weaponSwitching.transform)
+        {
+            if (weapon.gameObject.activeInHierarchy)
+            {
+                return weapon.GetComponent<Gun>();
+            }
+        }
+        return null;
+    }
+
+    private void ReloadActiveWeapon()
+    {
+        Gun activeGun = GetActiveGun();
+        if (activeGun != null)
+        {
+            activeGun.StartCoroutine(activeGun.Reload());
+        }
     }
 
     private void OnEnable()

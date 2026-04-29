@@ -17,6 +17,7 @@ public class Gun : MonoBehaviour
     public int currentTotalAmmo;
      public int maxAmmoPerRifle = 10;
     public int currentAmmo;
+    private int AmmoLeftInRifle;
 
     [Header("References")]
     public Animator animator;
@@ -89,7 +90,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    IEnumerator Reload()
+    public IEnumerator Reload()
     {
         isReloading = true;
         Debug.Log("Reloading...");
@@ -101,9 +102,19 @@ public class Gun : MonoBehaviour
         animator.SetBool("Reloading", false);
         yield return new WaitForSeconds(0.25f);
 
-        currentAmmo = maxAmmoPerRifle;
+        AmmoLeftInRifle = maxAmmoPerRifle - currentAmmo;
 
-        currentTotalAmmo -= maxAmmoPerRifle;
+        if (currentTotalAmmo < maxAmmoPerRifle)
+        {
+            currentAmmo = currentTotalAmmo;
+        }
+        else
+        {
+            currentAmmo = maxAmmoPerRifle;
+        }
+
+
+        currentTotalAmmo -= AmmoLeftInRifle;
         if (currentTotalAmmo < 0)
         {
             currentTotalAmmo = 0;
