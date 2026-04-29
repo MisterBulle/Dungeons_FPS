@@ -13,7 +13,7 @@ public class AmmoPickUp : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-        Debug.Log("AAAA");
+        //Debug.Log("AAAA");
             
             if (a == gun.maxAmmo)
             {

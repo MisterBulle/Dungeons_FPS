@@ -208,6 +208,15 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LaunchGrenade"",
+                    ""type"": ""Button"",
+                    ""id"": ""70517fc5-0e39-4a0d-9702-8f5998d6b8eb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -538,6 +547,28 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15594c72-bfaf-4ac9-b246-602c624452c7"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LaunchGrenade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86249694-5925-40f6-add0-95a614bbca05"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LaunchGrenade"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1077,6 +1108,7 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
         m_OnFoot_Weapon_1 = m_OnFoot.FindAction("Weapon_1", throwIfNotFound: true);
         m_OnFoot_Weapon_2 = m_OnFoot.FindAction("Weapon_2", throwIfNotFound: true);
         m_OnFoot_Reload = m_OnFoot.FindAction("Reload", throwIfNotFound: true);
+        m_OnFoot_LaunchGrenade = m_OnFoot.FindAction("LaunchGrenade", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1183,6 +1215,7 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Weapon_1;
     private readonly InputAction m_OnFoot_Weapon_2;
     private readonly InputAction m_OnFoot_Reload;
+    private readonly InputAction m_OnFoot_LaunchGrenade;
     /// <summary>
     /// Provides access to input actions defined in input action map "OnFoot".
     /// </summary>
@@ -1246,6 +1279,10 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "OnFoot/Reload".
         /// </summary>
         public InputAction @Reload => m_Wrapper.m_OnFoot_Reload;
+        /// <summary>
+        /// Provides access to the underlying input action "OnFoot/LaunchGrenade".
+        /// </summary>
+        public InputAction @LaunchGrenade => m_Wrapper.m_OnFoot_LaunchGrenade;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1311,6 +1348,9 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
+            @LaunchGrenade.started += instance.OnLaunchGrenade;
+            @LaunchGrenade.performed += instance.OnLaunchGrenade;
+            @LaunchGrenade.canceled += instance.OnLaunchGrenade;
         }
 
         /// <summary>
@@ -1361,6 +1401,9 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
+            @LaunchGrenade.started -= instance.OnLaunchGrenade;
+            @LaunchGrenade.performed -= instance.OnLaunchGrenade;
+            @LaunchGrenade.canceled -= instance.OnLaunchGrenade;
         }
 
         /// <summary>
@@ -1687,6 +1730,13 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnReload(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "LaunchGrenade" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLaunchGrenade(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

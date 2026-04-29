@@ -49,6 +49,9 @@ public class InputManager : MonoBehaviour
         //Reload
         onFoot.Reload.performed += ctx => ReloadActiveWeapon();
 
+        //Throw Grenade
+        onFoot.LaunchGrenade.performed += ctx => GetComponent<ThrowGrenade>().ThrowGrenadeFunction();
+
     }
 
     // Update is called once per frame
