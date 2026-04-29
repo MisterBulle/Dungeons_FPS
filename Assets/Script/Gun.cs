@@ -95,6 +95,13 @@ public class Gun : MonoBehaviour
         isReloading = true;
         Debug.Log("Reloading...");
 
+        if (currentTotalAmmo <= 0)
+        {
+            Debug.Log("Plus de munitions à recharger YOU BASTARD");
+            isReloading = false;
+            yield break;
+        }
+
         animator.SetBool("Reloading", true);
 
         yield return new WaitForSeconds(reloadTime - 0.25f);
@@ -104,7 +111,7 @@ public class Gun : MonoBehaviour
 
         AmmoLeftInRifle = maxAmmoPerRifle - currentAmmo;
 
-        //Si il reste moins de munitions que le nombre max par chargeur
+        //Si il reste moins de munitions que celle par chargeur
         if (currentTotalAmmo < maxAmmoPerRifle)
         {
             currentAmmo = currentTotalAmmo;
