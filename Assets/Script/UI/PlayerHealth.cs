@@ -3,7 +3,9 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private float playerhealth;
+    [HideInInspector]
+    public float playerhealth;
+
     private float learpTimer;
     public float maxHealth = 100f;
     public float Chipspeed = 2f;
