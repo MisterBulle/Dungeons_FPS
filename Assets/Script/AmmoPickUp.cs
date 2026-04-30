@@ -11,15 +11,15 @@ public class AmmoPickUp : MonoBehaviour
         //Debug.Log("Collision avec : " + other.tag);
         a = gun.currentTotalAmmo;
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && gun.currentTotalAmmo != gun.maxAmmo)
         {
         //Debug.Log("AAAA");
             
-            if (a == gun.maxAmmo)
-            {
-                return;
-            }
-            else
+            //if (a == gun.maxAmmo)
+            //{
+                //return;
+            //}
+            //else
             {
                 a = gun.currentTotalAmmo += gun.maxAmmoPerRifle;
                 Destroy(gameObject);

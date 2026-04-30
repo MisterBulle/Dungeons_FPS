@@ -2380,8 +2380,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThrowGrenade
   ThrowForce: 10
+  MaxGrenade: 3
   GrenadePrefab: {fileID: 5126418009171762133, guid: 69996af995119604393ef43a32c82fd1, type: 3}
   offset: {x: 0, y: 0, z: 1}
+  camera: {fileID: 330585545}
 --- !u!1 &1330110814
 GameObject:
   m_ObjectHideFlags: 0
