@@ -5,7 +5,7 @@ public class ThrowGrenade : MonoBehaviour
     public float ThrowForce = 40f;
 
     public int MaxGrenade = 3;
-    int CurrentGrenadeNumber; 
+    public int CurrentGrenadeNumber; 
 
 
 
