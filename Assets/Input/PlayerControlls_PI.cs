@@ -217,6 +217,15 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff53880d-1107-4934-8721-63da0c2025bc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -569,6 +578,28 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LaunchGrenade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4991b590-d68b-4bc9-8806-eb6c9fccfbd5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9f53893-530e-4461-9196-8cb0129a993d"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1109,6 +1140,7 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
         m_OnFoot_Weapon_2 = m_OnFoot.FindAction("Weapon_2", throwIfNotFound: true);
         m_OnFoot_Reload = m_OnFoot.FindAction("Reload", throwIfNotFound: true);
         m_OnFoot_LaunchGrenade = m_OnFoot.FindAction("LaunchGrenade", throwIfNotFound: true);
+        m_OnFoot_PauseMenu = m_OnFoot.FindAction("PauseMenu", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1216,6 +1248,7 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Weapon_2;
     private readonly InputAction m_OnFoot_Reload;
     private readonly InputAction m_OnFoot_LaunchGrenade;
+    private readonly InputAction m_OnFoot_PauseMenu;
     /// <summary>
     /// Provides access to input actions defined in input action map "OnFoot".
     /// </summary>
@@ -1284,6 +1317,10 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @LaunchGrenade => m_Wrapper.m_OnFoot_LaunchGrenade;
         /// <summary>
+        /// Provides access to the underlying input action "OnFoot/PauseMenu".
+        /// </summary>
+        public InputAction @PauseMenu => m_Wrapper.m_OnFoot_PauseMenu;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
@@ -1351,6 +1388,9 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
             @LaunchGrenade.started += instance.OnLaunchGrenade;
             @LaunchGrenade.performed += instance.OnLaunchGrenade;
             @LaunchGrenade.canceled += instance.OnLaunchGrenade;
+            @PauseMenu.started += instance.OnPauseMenu;
+            @PauseMenu.performed += instance.OnPauseMenu;
+            @PauseMenu.canceled += instance.OnPauseMenu;
         }
 
         /// <summary>
@@ -1404,6 +1444,9 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
             @LaunchGrenade.started -= instance.OnLaunchGrenade;
             @LaunchGrenade.performed -= instance.OnLaunchGrenade;
             @LaunchGrenade.canceled -= instance.OnLaunchGrenade;
+            @PauseMenu.started -= instance.OnPauseMenu;
+            @PauseMenu.performed -= instance.OnPauseMenu;
+            @PauseMenu.canceled -= instance.OnPauseMenu;
         }
 
         /// <summary>
@@ -1737,6 +1780,13 @@ public partial class @PlayerControlls_PI: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLaunchGrenade(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PauseMenu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPauseMenu(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

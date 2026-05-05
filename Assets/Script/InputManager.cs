@@ -16,6 +16,8 @@ public class InputManager : MonoBehaviour
     public Gun gun;
     public WeaponSwitching weaponSwitching;
 
+    public PauseMenu pauseMenu;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -52,6 +54,9 @@ public class InputManager : MonoBehaviour
         //Throw Grenade
         onFoot.LaunchGrenade.performed += ctx => GetComponent<ThrowGrenade>().ThrowGrenadeFunction();
 
+        //PauseMenu
+        onFoot.PauseMenu.performed += ctx => pauseMenu.Touche_PauseMenu();
+
     }
 
     // Update is called once per frame
@@ -70,7 +75,8 @@ public class InputManager : MonoBehaviour
         }
         
         // Only shoot if we have a gun and it's active
-        if (activeGun != null && onFoot.Shoot.IsPressed())
+        //Ajout PAS UNE BONNE SOLUTION
+        if (activeGun != null && onFoot.Shoot.IsPressed() && Time.timeScale > 0)
         {
             activeGun.Shoot();
         }

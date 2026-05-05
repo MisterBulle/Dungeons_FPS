@@ -1551,8 +1551,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1649746076}
-        m_TargetAssemblyTypeName: GameOverButton, Assembly-CSharp
-        m_MethodName: Button_Quit
+        m_TargetAssemblyTypeName: Button_Quit, Assembly-CSharp
+        m_MethodName: Button_QuitF
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

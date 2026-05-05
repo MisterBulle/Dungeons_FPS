@@ -9,25 +9,29 @@ public class PlayerMotor : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     public float speed = 5f;
+
+    public float originalSpeed;
     public float MaxSpeed = 10f;
 
     public bool isGrounded;
     public float gravity = -9.81f;
     
-    public float JumpHeight = 3f;
+    public float JumpHeight = 2f;
 
     //Dashing
     public bool canDash = true;
     public bool isDashing = false;
 
     [Header("Dash settings")]
-    public float dashingPower = 10f;
-    public float dashingTime = 0.2f;
+    public float dashingPower = 25f;
+    public float dashingTime = 0.25f;
     public float dashingCooldown = 1f;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
+        originalSpeed = speed;
     }
     // Update is called once per frame
     void Update()
@@ -67,8 +71,8 @@ public class PlayerMotor : MonoBehaviour
             speed = MaxSpeed;
         }
         else
-        {
-            speed = 5f;
+        {   
+            speed = originalSpeed;
         }
     }
 
