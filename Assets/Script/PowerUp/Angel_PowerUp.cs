@@ -35,7 +35,7 @@ public class Angel_PowerUp : PowerUp
 
     void Update()
     {
-        isGrounded = playerStat.isGrounded;
+        //isGrounded = playerStat.isGrounded;
     }
 
 
