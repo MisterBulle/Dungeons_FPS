@@ -4,7 +4,7 @@ public class Tank_PowerUp : PowerUp
 {
     [Header("Children part")]
     public GameObject WeaponHolder;
-    public GameObject PowerUpParent;
+    //public GameObject PowerUpParent;
 
     [Header("Settings Speed")]
     public float Speed = 3f;

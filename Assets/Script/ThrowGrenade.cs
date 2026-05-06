@@ -7,8 +7,6 @@ public class ThrowGrenade : MonoBehaviour
     public int MaxGrenade = 3;
     public int CurrentGrenadeNumber; 
 
-
-
     public GameObject GrenadePrefab;
     public Vector3 offset = new Vector3(0, 0, 1f);
 
