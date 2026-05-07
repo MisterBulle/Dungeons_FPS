@@ -1421,6 +1421,7 @@ GameObject:
   - component: {fileID: 1649746077}
   - component: {fileID: 1649746076}
   - component: {fileID: 1649746078}
+  - component: {fileID: 1649746079}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1467,6 +1468,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a48eab427d92a42b3bbc46f940e3b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneManagerFunction
+--- !u!114 &1649746079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649746075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce125b8831c54a442a6b09c8705fb713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorLock
+  isCursorLock: 0
 --- !u!1 &1873835944
 GameObject:
   m_ObjectHideFlags: 0

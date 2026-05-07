@@ -25,6 +25,9 @@ public class PauseMenu : MonoBehaviour
             isPaused = false;
             pausePanel.SetActive(false);
             Time.timeScale = 1;
+            //je bloque la souris
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         //j'entre dans pause
         else
@@ -32,6 +35,9 @@ public class PauseMenu : MonoBehaviour
             isPaused = true;
             pausePanel.SetActive(true);
             Time.timeScale = 0;
+            //Je libère la souris
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
