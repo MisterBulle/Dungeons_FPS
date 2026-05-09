@@ -1590,6 +1590,7 @@ GameObject:
   - component: {fileID: 432598416}
   - component: {fileID: 432598415}
   - component: {fileID: 432598414}
+  - component: {fileID: 432598418}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -1692,6 +1693,21 @@ Transform:
   - {fileID: 1525140529}
   m_Father: {fileID: 1953219223}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &432598418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432598413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0101aef59045fee4aa6943353791adb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TakeDamage
+  Health: 50
+  Parent: {fileID: 1124085899}
+  EnemyCount: {fileID: 2117453575}
 --- !u!1001 &437341243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4864,7 +4880,7 @@ MonoBehaviour:
   fieldOfView: 85
   eyeHeight: 1
   gunBarrel: {fileID: 855843652}
-  fireRate: 1.3
+  fireRate: 1
   bulletSpeed: 40
 --- !u!195 &1124085902
 NavMeshAgent:
@@ -5586,7 +5602,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5835,7 +5851,7 @@ GameObject:
   - component: {fileID: 1330110816}
   - component: {fileID: 1330110815}
   m_Layer: 0
-  m_Name: Ennemie
+  m_Name: TEST
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5854,6 +5870,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TakeDamage
   Health: 50
+  Parent: {fileID: 0}
+  EnemyCount: {fileID: 0}
 --- !u!135 &1330110816
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9018,6 +9036,7 @@ GameObject:
   - component: {fileID: 2117453570}
   - component: {fileID: 2117453573}
   - component: {fileID: 2117453574}
+  - component: {fileID: 2117453575}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9090,6 +9109,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorLock
   isCursorLock: 1
+--- !u!114 &2117453575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117453569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d46a810c35a70247893e54dab360c81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyCount
+  EnemyDetruit: 0
+  EnemyTotalSpawn: 0
 --- !u!1001 &2139322083
 PrefabInstance:
   m_ObjectHideFlags: 0

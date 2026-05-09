@@ -3,6 +3,9 @@ using UnityEngine;
 public class TakeDamage : MonoBehaviour
 {
     public float Health = 50f;
+    public GameObject Parent;
+
+    public EnemyCount EnemyCount;
 
     public void TakeDamageFunction(float amount)
     {
@@ -10,6 +13,7 @@ public class TakeDamage : MonoBehaviour
         if (Health <= 0f)
         {
             Die();
+            EnemyCount.EnemyDetruit += 1;
             return;
         }
     }
@@ -17,6 +21,6 @@ public class TakeDamage : MonoBehaviour
 
     public void Die()
     {
-        Destroy(gameObject);
+        Destroy(Parent);
     }
 }
