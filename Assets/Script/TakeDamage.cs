@@ -14,6 +14,7 @@ public class TakeDamage : MonoBehaviour
         {
             Die();
             EnemyCount.EnemyDetruit += 1;
+            EnemyCount.CheckingIfAllEnemyAreDestroyed();
             return;
         }
     }

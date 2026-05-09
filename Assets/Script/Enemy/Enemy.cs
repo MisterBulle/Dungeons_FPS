@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour
     [Range(0.1f,10f)]
     public float fireRate;
     public float bulletSpeed = 40f;
+    public float damage = 10;
+    public Bullet bulletPrefab;
 
     void Start()
     {
@@ -35,6 +37,7 @@ public class Enemy : MonoBehaviour
 
         //Le script va parcourir tous les gameObjects et dès qu'il trouve le premier objet avec ce tag
         player = GameObject.FindGameObjectWithTag("Player");
+        bulletPrefab.damage = damage;
     }
 
     void Update()

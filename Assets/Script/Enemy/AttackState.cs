@@ -52,7 +52,7 @@ public class AttackState : BaseState
         //Add force to the bullet
         //The higher value of random range the less accurate the enemy will be
         bullet.GetComponent<Rigidbody>().linearVelocity = Quaternion.AngleAxis(Random.Range(-3f,3f),Vector3.up) * shootDirection * enemy.bulletSpeed;
-        Debug.Log("Shoot");
+        //Debug.Log("Shoot");
         shotTimer = 0;
     }
 

@@ -3,6 +3,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
+    public float damage = 10f;
+
     void Start()
     {
         Destroy(gameObject, 10f);
@@ -14,7 +16,7 @@ public class Bullet : MonoBehaviour
         if (hitTransform.CompareTag("Player"))
         {
             Debug.Log("Hit Player");
-            hitTransform.GetComponent<PlayerHealth>().TakeDamage(10);
+            hitTransform.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
         Destroy(gameObject);
     }

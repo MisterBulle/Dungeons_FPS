@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class Enemy_Path : MonoBehaviour
 {
-        public List<Transform> waypoints;
+    public List<Transform> waypoints;
     [SerializeField]
     private bool alwaysDrawPath;
     [SerializeField]
