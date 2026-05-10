@@ -109,7 +109,7 @@ public class InputManager : MonoBehaviour
     {
 
         Gun activeGun = GetActiveGun();
-        if(activeGun != null)
+        if(activeGun != null && activeGun.currentAmmo != activeGun.maxAmmoPerRifle)
         {
             activeGun.StartCoroutine(activeGun.Reload());           
         }

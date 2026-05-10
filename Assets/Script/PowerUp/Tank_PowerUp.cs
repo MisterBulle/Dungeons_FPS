@@ -53,6 +53,18 @@ public class Tank_PowerUp : PowerUp
         UpgradeAllGun(player);
     }
 
+    protected override void CopyTo(PowerUp clone)
+    {
+        if (clone is Tank_PowerUp target)
+        {
+            target.WeaponHolder = WeaponHolder;
+            target.Speed = Speed;
+            target.MaxSpeed = MaxSpeed;
+            target.JumpHeight = JumpHeight;
+            target.Health = Health;
+        }
+    }
+
     public void UpgradeAllGun(GameObject player)
     {
         Transform holder = WeaponHolder ? WeaponHolder.transform : null;

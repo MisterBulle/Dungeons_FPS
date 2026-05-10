@@ -2,44 +2,98 @@ using UnityEngine;
 
 public class Angel_PowerUp : PowerUp
 {
-
     [Header("Children part")]
     public GameObject WeaponHolder;
     //public GameObject PowerUpParent;
 
-    [Header ("PowerUp Settings")]
+    [Header("PowerUp Settings")]
     public float damagePU;
-    public bool isGrounded;
 
     public Grenade Grenade;
 
     private PlayerMotor playerStat;
+    private bool effectApplied;
 
     public override void Apply(GameObject player)
     {
-        Grenade.damage += damagePU;
+        if (player == null)
+        {
+            Debug.LogWarning("Angel_PowerUp.Apply: player is null.");
+            return;
+        }
 
         playerStat = player.GetComponent<PlayerMotor>();
-
-        if (playerStat != null)
+        if (playerStat == null)
         {
-            isGrounded = playerStat.isGrounded;
-        }
-        else
-        {
-            Debug.LogWarning("Tank_PowerUp.Apply: PlayerMotor introuvable sur le player.");
+            Debug.LogWarning("Angel_PowerUp.Apply: PlayerMotor introuvable sur le player.");
+            return;
         }
 
-        UpgradeAllGun(player);
+        EvaluateGroundedState();
     }
 
-    void Update()
+    public override void Tick()
     {
-        //isGrounded = playerStat.isGrounded;
+        if (player == null)
+            return;
+
+        if (playerStat == null)
+            playerStat = player.GetComponent<PlayerMotor>();
+
+        EvaluateGroundedState();
     }
 
+    protected override void CopyTo(PowerUp clone)
+    {
+        if (clone is Angel_PowerUp target)
+        {
+            target.WeaponHolder = WeaponHolder;
+            target.damagePU = damagePU;
+            target.Grenade = Grenade;
+        }
+    }
 
-    public void UpgradeAllGun(GameObject player)
+    private void EvaluateGroundedState()
+    {
+        if (playerStat == null)
+            return;
+
+        bool grounded = playerStat.isGrounded;
+        if (!grounded && !effectApplied)
+        {
+            ApplyBuff();
+        }
+        else if (grounded && effectApplied)
+        {
+            RemoveBuff();
+        }
+    }
+
+    private void ApplyBuff()
+    {
+        if (effectApplied)
+            return;
+
+        if (Grenade != null)
+            Grenade.damage += damagePU;
+
+        UpdateAllGuns(player, damagePU);
+        effectApplied = true;
+    }
+
+    private void RemoveBuff()
+    {
+        if (!effectApplied)
+            return;
+
+        if (Grenade != null)
+            Grenade.damage -= damagePU;
+
+        UpdateAllGuns(player, -damagePU);
+        effectApplied = false;
+    }
+
+    private void UpdateAllGuns(GameObject player, float damageDelta)
     {
         Transform holder = WeaponHolder ? WeaponHolder.transform : null;
 
@@ -52,7 +106,7 @@ public class Angel_PowerUp : PowerUp
 
         if (holder == null)
         {
-            Debug.LogWarning("Tank_PowerUp.UpgradeAllGun: WeaponHolder introuvable.");
+            Debug.LogWarning("Angel_PowerUp.UpdateAllGuns: WeaponHolder introuvable.");
             return;
         }
 
@@ -61,8 +115,7 @@ public class Angel_PowerUp : PowerUp
             Gun gunScript = weapon.GetComponent<Gun>();
             if (gunScript != null)
             {
-                Debug.Log("Upgrade de l'arme : " + weapon.name);
-                gunScript.damage += damagePU;
+                gunScript.damage += damageDelta;
             }
         }
     }
