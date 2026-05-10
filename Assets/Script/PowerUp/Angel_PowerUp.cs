@@ -32,6 +32,20 @@ public class Angel_PowerUp : PowerUp
         EvaluateGroundedState();
     }
 
+    public override void Initialize(GameObject player)
+    {
+        base.Initialize(player);
+
+        WeaponSwitching ws = player.GetComponentInChildren<WeaponSwitching>();
+        if (ws != null)
+        {
+            WeaponHolder = ws.gameObject;
+        }   
+
+        Grenade = player.GetComponent<Grenade>();
+    }
+
+
     public override void Tick()
     {
         if (player == null)

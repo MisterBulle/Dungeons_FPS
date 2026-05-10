@@ -23,6 +23,17 @@ public class BBB_PowerUp : PowerUp
         BonusBBB();
     }
 
+    public override void Initialize(GameObject player)
+    {
+        base.Initialize(player);
+
+        WeaponSwitching ws = player.GetComponentInChildren<WeaponSwitching>();
+        if (ws != null)
+        {
+            WeaponHolder = ws.gameObject;
+        }
+    }
+
     public override void Tick()
     {
         BonusBBB();

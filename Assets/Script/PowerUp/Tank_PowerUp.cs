@@ -53,6 +53,17 @@ public class Tank_PowerUp : PowerUp
         UpgradeAllGun(player);
     }
 
+    public override void Initialize(GameObject player)
+    {
+        base.Initialize(player);
+
+        WeaponSwitching ws = player.GetComponentInChildren<WeaponSwitching>();
+        if (ws != null)
+        {
+            WeaponHolder = ws.gameObject;
+        }
+    }
+
     protected override void CopyTo(PowerUp clone)
     {
         if (clone is Tank_PowerUp target)

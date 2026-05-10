@@ -16,7 +16,7 @@ public abstract class PowerUp : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Initialize(GameObject player)
+    public virtual void Initialize(GameObject player)
     {
         this.player = player;
     }
