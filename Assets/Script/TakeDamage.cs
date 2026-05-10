@@ -4,8 +4,15 @@ public class TakeDamage : MonoBehaviour
 {
     public float Health = 50f;
     public GameObject Parent;
+    public EnemyCount enemyCount;
 
-    public EnemyCount EnemyCount;
+    void Start()
+    {
+        if (enemyCount == null)
+        {
+            enemyCount = FindObjectOfType<EnemyCount>();
+        }
+    }
 
     public void TakeDamageFunction(float amount)
     {
@@ -13,8 +20,8 @@ public class TakeDamage : MonoBehaviour
         if (Health <= 0f)
         {
             Die();
-            EnemyCount.EnemyDetruit += 1;
-            EnemyCount.CheckingIfAllEnemyAreDestroyed();
+            enemyCount.EnemyDetruit += 1;
+            enemyCount.CheckingIfAllEnemyAreDestroyed();
             return;
         }
     }

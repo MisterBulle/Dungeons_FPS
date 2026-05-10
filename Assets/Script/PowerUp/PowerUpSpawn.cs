@@ -14,6 +14,11 @@ public class PowerUpSpawn : MonoBehaviour
 
     void Start()
     {
+        LaunchPowerUpSpawn();
+    }
+
+    public void LaunchPowerUpSpawn()
+    {
         //Save des powerup
         powerUpSave = new List<GameObject>(powerUpPrefabs);
         //On récupère les 3 enfants de spawnPoint
@@ -22,19 +27,46 @@ public class PowerUpSpawn : MonoBehaviour
             SpawnPointList.Add(spawnPoint.transform.GetChild(i));
         }
         ChoicePowerUp();
-
     }
 
 
     void ChoicePowerUp()
     {
-
         for (int i = 0; i < SpawnPointList.Count; i++)
         {
             //4 est exclus
             int randomnumber = Random.Range(0, powerUpPrefabs.Count);
-            Instantiate(powerUpPrefabs[randomnumber], SpawnPointList[i].position, Quaternion.identity, SpawnPointList[i]);
-            powerUpPrefabs.RemoveAt(randomnumber);
+            GameObject spawnedPowerUp = Instantiate(powerUpPrefabs[randomnumber], SpawnPointList[i].position, Quaternion.identity, SpawnPointList[i]);
+            
+             
+
+            // Assigner les références manquantes avec Reflection
+            /*PowerUp powerUpComponent = spawnedPowerUp.GetComponent<PowerUp>();
+            if (powerUpComponent != null)
+            {
+                var fields = powerUpComponent.GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+                foreach (var field in fields)
+                {
+                    if (field.FieldType == typeof(GameObject))
+                    {
+                        Transform child = spawnedPowerUp.transform.Find(field.Name);
+                        if (child != null)
+                        {
+                            field.SetValue(powerUpComponent, child.gameObject);
+                        }
+                    }
+                }
+            }
+            
+            // Assigner Player et PowerUpSpawn pour Interact_PowerUp
+            Interact_PowerUp interactPowerUp = spawnedPowerUp.GetComponent<Interact_PowerUp>();
+            if (interactPowerUp != null)
+            {
+                interactPowerUp.player = GameObject.FindGameObjectWithTag("Player");
+                interactPowerUp.PowerUpSpawn = this;
+            }
+            
+            powerUpPrefabs.RemoveAt(randomnumber);*/
         }
     }
 

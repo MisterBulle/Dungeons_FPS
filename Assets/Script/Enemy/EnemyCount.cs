@@ -6,19 +6,26 @@ public class EnemyCount : MonoBehaviour
     public int EnemyDetruit = 0;
     public int EnemyTotalSpawn = 3;
 
-    private OpenDoor openDoor;
+    public Interactable_Test I_T;
 
+
+    
     void Start()
     {
-        openDoor = GetComponent<OpenDoor>();
+        
     }
 
     public void CheckingIfAllEnemyAreDestroyed()
     {
-        if (EnemyDetruit >= EnemyTotalSpawn)
+        if (EnemyDetruit == EnemyTotalSpawn)
         {
             Debug.Log("Tous les ennemis sont détruits !");
-            openDoor.OpenDoorFunction();
+            EnemyDetruit = 0;
+            //On a détruit tous les ennemis on peut de nouveau ouvrir la porte
+            I_T.CanIOpenTheDoor = true;
+            //Je lance le spawn des powerup
+            GetComponent<PowerUpSpawn>().LaunchPowerUpSpawn();
+
         }
         else
         {

@@ -7,6 +7,14 @@ public class Interactable_Test : Interactable
     private GameObject door;
     private bool doorOpen;
 
+    [SerializeField]
+    public bool CanIOpenTheDoor = true;
+
+    void Start()
+    {
+        //CanIOpenTheDoor = true;
+    }
+
 
     protected override void Interact()
     {
@@ -16,8 +24,16 @@ public class Interactable_Test : Interactable
         
         //base.Interact()
 
-        doorOpen = !doorOpen;
-        // On va chercher dans l'animator de l'objet le boolean "isOpen" et on lui donne la value true
-        door.GetComponent<Animator>().SetBool("isOpen", doorOpen);
+        doorOpen = !doorOpen; 
+        if(CanIOpenTheDoor)
+        {
+            // On va chercher dans l'animator de l'objet le boolean "isOpen" et on lui donne la value true
+            door.GetComponent<Animator>().SetBool("isOpen", doorOpen);
+            CanIOpenTheDoor = false;
+        }
+        else
+        {
+            Debug.Log("La porte est fermée");
+        }
     }
 }
