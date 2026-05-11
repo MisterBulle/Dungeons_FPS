@@ -22,9 +22,11 @@ public class Interact_PowerUp : Interactable
         }
 
         // Destruction des 2 autres objets
-        Destroy(PowerUpSpawn.spawnPoint.gameObject);
+        Destroy(PowerUpSpawn.spawnPoint[PowerUpSpawn.NumberOfSpawnPowerUp].gameObject);
         PowerUpSpawn.RemoveChoicePowerUp(powerUp.title);
 
         powerUp.DestroyPowerUp();
+        PowerUpSpawn.NumberOfSpawnPowerUp++;
+        //PowerUpSpawn.LaunchPowerUpSpawn();
     }
 }

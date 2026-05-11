@@ -1330,7 +1330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TakeDamage
   Health: 150
   Parent: {fileID: 5404917598411089595}
-  EnemyCount: {fileID: 0}
+  enemyCount: {fileID: 0}
 --- !u!1 &5286040579748712796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,13 +1493,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   currentState: 
   enemy_path: {fileID: 0}
-  sightDistance: 20
-  fieldOfView: 85
+  sightDistance: 40
+  fieldOfView: 360
   eyeHeight: 1
   gunBarrel: {fileID: 5841086220811562817}
-  fireRate: 1
-  bulletSpeed: 30
-  damage: 10
+  fireRate: 0.5
+  bulletSpeed: 45
+  damage: 5
   bulletPrefab: {fileID: 8728622300054845389, guid: 7c4f5dd84fb5d784c91553380a1ef544, type: 3}
 --- !u!114 &8785181107637583640
 MonoBehaviour:

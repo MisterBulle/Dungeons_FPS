@@ -7,26 +7,31 @@ public class PowerUpSpawn : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> powerUpSave;
-    public GameObject spawnPoint;
-
-    
+    public List<GameObject> spawnPoint;
 
     [SerializeField]
     private List<Transform> SpawnPointList;
+    public int NumberOfSpawnPowerUp;
 
     void Start()
     {
+        NumberOfSpawnPowerUp = 0;
+
         LaunchPowerUpSpawn();
     }
 
     public void LaunchPowerUpSpawn()
     {
+        // Réinitialiser SpawnPointList à chaque appel
+        SpawnPointList = new List<Transform>();
+        
         //Save des powerup
         powerUpSave = new List<GameObject>(powerUpPrefabs);
+        
         //On récupère les 3 enfants de spawnPoint
         for (int i = 0; i <= 2; i++)
         {
-            SpawnPointList.Add(spawnPoint.transform.GetChild(i));
+            SpawnPointList.Add(spawnPoint[NumberOfSpawnPowerUp].transform.GetChild(i));
         }
         ChoicePowerUp();
     }
@@ -34,16 +39,25 @@ public class PowerUpSpawn : MonoBehaviour
 
     void ChoicePowerUp()
     {
+
         Debug.Log("ChoicePowerUp() appelé");
         Debug.Log("SpawnPointList.Count = " + SpawnPointList.Count);
-        Debug.Log("powerUpPrefabs.Count = " + powerUpPrefabs.Count);
+        Debug.Log("powerUpSave.Count = " + powerUpSave.Count);
         
         for (int i = 0; i < SpawnPointList.Count; i++)
         {
             Debug.Log("Boucle itération " + i);
+            
+            // Vérifier qu'il y a encore des PowerUp disponibles
+            if (powerUpSave.Count == 0)
+            {
+                Debug.LogWarning("Plus de PowerUp disponibles !");
+                break;
+            }
+            
             //4 est exclus
-            int randomnumber = Random.Range(0, powerUpPrefabs.Count);
-            GameObject spawnedPowerUp = Instantiate(powerUpPrefabs[randomnumber], SpawnPointList[i].position, Quaternion.identity, SpawnPointList[i]);
+            int randomnumber = Random.Range(0, powerUpSave.Count);
+            GameObject spawnedPowerUp = Instantiate(powerUpSave[randomnumber], SpawnPointList[i].position, Quaternion.identity, SpawnPointList[i]);
             Debug.Log("PowerUp spawnné : " + spawnedPowerUp.name);
             
              
@@ -75,7 +89,7 @@ public class PowerUpSpawn : MonoBehaviour
                 interactPowerUp.PowerUpSpawn = this;
             }
             
-            powerUpPrefabs.RemoveAt(randomnumber);
+            powerUpSave.RemoveAt(randomnumber);
             
             // Initialiser le PowerUp avec le player
             PowerUp powerUp = powerUpComponent;
@@ -105,29 +119,15 @@ public class PowerUpSpawn : MonoBehaviour
 
     public void RemoveChoicePowerUp(string powerUpName)
     {
-        GameObject removedPrefab = null;
-
+        // Rechercher et supprimer le PowerUp de la liste
         for (int i = 0; i < powerUpSave.Count; i++)
         {
             if (powerUpSave[i].name == powerUpName)
             {
-                removedPrefab = powerUpSave[i];
                 powerUpSave.RemoveAt(i);
                 break;
             }
         }
-
-        if (removedPrefab != null)
-        {
-            powerUpPrefabs.Remove(removedPrefab);
-        }
-        else
-        {
-            powerUpPrefabs.RemoveAll(prefab => prefab != null && prefab.name == powerUpName);
-        }
-
-        powerUpPrefabs = new List<GameObject>(powerUpSave);
-        powerUpSave = powerUpPrefabs;
     }
 
 }

@@ -432,12 +432,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   currentState: 
   enemy_path: {fileID: 0}
-  sightDistance: 20
-  fieldOfView: 85
+  sightDistance: 40
+  fieldOfView: 360
   eyeHeight: 1
   gunBarrel: {fileID: 2466225575244559290}
-  fireRate: 2
-  bulletSpeed: 20
+  fireRate: 1
+  bulletSpeed: 35
   damage: 20
   bulletPrefab: {fileID: 8728622300054845389, guid: 7c4f5dd84fb5d784c91553380a1ef544, type: 3}
 --- !u!114 &5220173226324335477
@@ -864,7 +864,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TakeDamage
   Health: 100
   Parent: {fileID: 5406228206363196228}
-  EnemyCount: {fileID: 0}
+  enemyCount: {fileID: 0}
 --- !u!1 &8516565108466219963
 GameObject:
   m_ObjectHideFlags: 0
