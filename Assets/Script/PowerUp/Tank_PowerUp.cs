@@ -7,12 +7,12 @@ public class Tank_PowerUp : PowerUp
     //public GameObject PowerUpParent;
 
     [Header("Settings Speed")]
-    public float Speed = 3f;
-    public float MaxSpeed = 5f;
-    public float JumpHeight = 1f;
+    public float Speed = 1.5f;
+    public float MaxSpeed = 2.5f;
+    public float JumpHeight = 0.5f;
 
     [Header("Settings Health")]
-    public float Health = 200f;
+    public float Health = 100f;
 
     public override void Apply(GameObject player)
     {
@@ -27,13 +27,13 @@ public class Tank_PowerUp : PowerUp
 
         if (playerStat != null)
         {
-            playerStat.speed = Speed;
-            playerStat.originalSpeed = Speed;
-            playerStat.MaxSpeed = MaxSpeed;
-            playerStat.JumpHeight = JumpHeight;
-            playerStat.dashingPower = 12.5f;
-            playerStat.dashingTime = 0.125f;
-            playerStat.dashingCooldown = 2f;
+            playerStat.speed -= Speed;
+            playerStat.originalSpeed -= Speed;
+            playerStat.MaxSpeed -= MaxSpeed;
+            playerStat.JumpHeight -= JumpHeight;
+            playerStat.dashingPower -= 12.5f;
+            playerStat.dashingTime -= 0.125f;
+            playerStat.dashingCooldown -= 1f;
         }
         else
         {
@@ -42,8 +42,8 @@ public class Tank_PowerUp : PowerUp
 
         if (playerHealth != null)
         {
-            playerHealth.maxHealth = Health;
-            playerHealth.playerhealth = Health;
+            playerHealth.maxHealth += Health;
+            playerHealth.playerhealth += Health;
         }
         else
         {
