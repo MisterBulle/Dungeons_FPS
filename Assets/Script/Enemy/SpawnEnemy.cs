@@ -8,6 +8,7 @@ public class SpawnEnemy : MonoBehaviour
     public List<GameObject> enemies;
 
     public List<Enemy_Path> Path;
+    public List<Enemy_Path> Path2;
     //public Transform spawnPosition;
 
     public int NumberOfEnemy;
@@ -20,43 +21,69 @@ public class SpawnEnemy : MonoBehaviour
     
     private GameObject spawnedEnemy;
 
+    public int MinEnemies;
+    public int MaxEnemies;
+
     void Start()
     {
+        MinEnemies = 5;
+        MaxEnemies = 7;
     }
 
     public void Spawn()
     {
-        //Level 1
-
-        int MinEnemies = 5;
-        int MaxEnemies = 7;
-        
         NumberOfEnemy = Random.Range(MinEnemies, MaxEnemies);
-        //On trouve EnemyCount
+        Debug.Log("Number of enemy " + NumberOfEnemy);
+
         EnemyCount enemyCountRef = FindObjectOfType<EnemyCount>();
-        
         if (enemyCountRef != null)
         {
             enemyCountRef.EnemyTotalSpawn = NumberOfEnemy;
         }
-        
+
+        List<Transform> currentSpawnPoints = currentLevel == 1 ? spawnPointsLevel1 : spawnPointsLevel2;
+        List<Enemy_Path> currentPaths = currentLevel == 1 ? Path : Path2;
+        int availableSpawnCount = currentSpawnPoints != null ? currentSpawnPoints.Count : 0;
+        int availablePathCount = currentPaths != null ? currentPaths.Count : 0;
+        int spawnCount = Mathf.Min(NumberOfEnemy, availableSpawnCount, availablePathCount);
+
+        if (spawnCount <= 0)
+        {
+            Debug.LogWarning("SpawnEnemy.Spawn: no spawn points or enemy paths available.");
+            return;
+        }
+
+        if (spawnCount < NumberOfEnemy)
+        {
+            Debug.LogWarning($"SpawnEnemy.Spawn requested {NumberOfEnemy} enemies but only {spawnCount} spawn points/paths are available.");
+            NumberOfEnemy = spawnCount;
+        }
+
         for (int i = 0; i < NumberOfEnemy; i++)
         {
-            //Choix de l'ennemi à spawn
+            if (enemies == null || enemies.Count == 0)
+            {
+                Debug.LogWarning("SpawnEnemy.Spawn: no enemies configured in the enemies list.");
+                break;
+            }
+
             ChoiceEnemy = Random.Range(0, enemies.Count);
-            //Spawn de l'ennemi
-            if (currentLevel == 1)
+            if (currentSpawnPoints == null || currentSpawnPoints.Count <= i)
             {
-                spawnedEnemy = Instantiate(enemies[ChoiceEnemy], spawnPointsLevel1[i].position, spawnPointsLevel1[i].rotation);
+                Debug.LogWarning($"SpawnEnemy.Spawn: missing spawn point for index {i}.");
+                break;
             }
-            else
+
+            spawnedEnemy = Instantiate(enemies[ChoiceEnemy], currentSpawnPoints[i].position, currentSpawnPoints[i].rotation);
+            if (currentPaths != null && currentPaths.Count > i)
             {
-                spawnedEnemy = Instantiate(enemies[ChoiceEnemy], spawnPointsLevel2[i].position, spawnPointsLevel2[i].rotation);
+                Enemy enemyComponent = spawnedEnemy.GetComponent<Enemy>();
+                if (enemyComponent != null)
+                {
+                    enemyComponent.enemy_path = currentPaths[i];
+                }
             }
-            //GameObject spawnedEnemy = Instantiate(enemies[ChoiceEnemy], spawnPoints[i].position, spawnPoints[i].rotation);
-            //On lui donne l'item
-            spawnedEnemy.GetComponent<Enemy>().enemy_path = Path[i];
-            //On lui assigne la référence EnemyCount
+
             if (enemyCountRef != null)
             {
                 TakeDamage takeDamage = spawnedEnemy.GetComponent<TakeDamage>();
@@ -66,11 +93,10 @@ public class SpawnEnemy : MonoBehaviour
                 }
             }
         }
-        //Pour le level 2
+
         currentLevel++;
         MinEnemies = 10;
-        MaxEnemies = 13;
-
+        MaxEnemies = 12;
     }
 
     /*void Spawn()

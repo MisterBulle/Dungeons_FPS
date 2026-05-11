@@ -10967,8 +10967,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 000b04f578602304a927d68e6cdf7ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnEnemy
-  spawnPointsLevel1: []
-  spawnPointsLevel2: []
+  spawnPointsLevel1:
+  - {fileID: 588996228}
+  - {fileID: 522614525}
+  - {fileID: 43257505}
+  - {fileID: 1992506137}
+  - {fileID: 510319819}
+  - {fileID: 1075613031}
+  - {fileID: 242738670}
+  spawnPointsLevel2:
+  - {fileID: 1094072999}
+  - {fileID: 703470384}
+  - {fileID: 1949728142}
+  - {fileID: 1058023364}
+  - {fileID: 1083511969}
+  - {fileID: 548386138}
+  - {fileID: 560812061}
+  - {fileID: 952215994}
+  - {fileID: 974967443}
+  - {fileID: 1234494567}
+  - {fileID: 396944409}
+  - {fileID: 2053567454}
+  - {fileID: 315957634}
   enemies:
   - {fileID: 5028727047226456379, guid: 369b80638f6a6f348ac7c5021f244be6, type: 3}
   - {fileID: 5406228206363196228, guid: 9343ede60a563fc43a6e6aab2bb4b46d, type: 3}
@@ -10981,8 +11001,24 @@ MonoBehaviour:
   - {fileID: 1264039214}
   - {fileID: 1857281046}
   - {fileID: 1265126774}
+  Path2:
+  - {fileID: 1440858922}
+  - {fileID: 589111811}
+  - {fileID: 1437764805}
+  - {fileID: 343695971}
+  - {fileID: 229858499}
+  - {fileID: 2007627571}
+  - {fileID: 215008377}
+  - {fileID: 392474156}
+  - {fileID: 2113169561}
+  - {fileID: 190936274}
+  - {fileID: 1672039634}
+  - {fileID: 153396213}
+  - {fileID: 2028587463}
   NumberOfEnemy: 0
   currentLevel: 1
+  MinEnemies: 0
+  MaxEnemies: 0
 --- !u!114 &2117453578
 MonoBehaviour:
   m_ObjectHideFlags: 0
