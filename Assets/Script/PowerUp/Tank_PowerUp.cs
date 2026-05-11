@@ -7,12 +7,12 @@ public class Tank_PowerUp : PowerUp
     //public GameObject PowerUpParent;
 
     [Header("Settings Speed")]
-    public float Speed = 1.5f;
-    public float MaxSpeed = 2.5f;
-    public float JumpHeight = 0.5f;
+    public float Speed;
+    public float MaxSpeed;
+    public float JumpHeight;
 
     [Header("Settings Health")]
-    public float Health = 100f;
+    public float Health;
 
     public override void Apply(GameObject player)
     {
@@ -20,6 +20,15 @@ public class Tank_PowerUp : PowerUp
         {
             Debug.LogWarning("Tank_PowerUp.Apply: player is null.");
             return;
+        }
+
+        // Load stats from DataManager if not set
+        if (DataManager.Instance != null)
+        {
+            Speed = DataManager.Instance.tankPowerUpStats.speed;
+            MaxSpeed = DataManager.Instance.tankPowerUpStats.maxSpeed;
+            JumpHeight = DataManager.Instance.tankPowerUpStats.jumpHeight;
+            Health = DataManager.Instance.tankPowerUpStats.health;
         }
 
         PlayerMotor playerStat = player.GetComponent<PlayerMotor>();

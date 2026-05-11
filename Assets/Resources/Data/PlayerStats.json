@@ -1,0 +1,10 @@
+{
+  "speed": 5.0,
+  "maxSpeed": 10.0,
+  "jumpHeight": 2.0,
+  "dashingPower": 25.0,
+  "dashingTime": 0.25,
+  "dashingCooldown": 1.0,
+  "maxHealth": 100.0,
+  "chipSpeed": 2.0
+}

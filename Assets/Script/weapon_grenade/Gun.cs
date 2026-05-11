@@ -3,19 +3,19 @@ using System.Collections;
 
 public class Gun : MonoBehaviour
 {
-    public float damage = 10f;
-    public float range = 100f;
-    public float fireRate = 15f;
+    public float damage;
+    public float range;
+    public float fireRate;
 
     private float nextTimeToFire = 0f;
 
-    public float reloadTime = 2f;
+    public float reloadTime;
     private bool isReloading = false;
 
     [Header("Ammo")]
-    public int maxAmmo = 180;
+    public int maxAmmo;
     public int currentTotalAmmo;
-     public int maxAmmoPerRifle = 10;
+     public int maxAmmoPerRifle;
     public int currentAmmo;
     private int AmmoLeftInRifle;
 
@@ -25,6 +25,17 @@ public class Gun : MonoBehaviour
 
     void Start()
     {
+        // Load stats from DataManager
+        if (DataManager.Instance != null)
+        {
+            damage = DataManager.Instance.weaponStats.damage;
+            range = DataManager.Instance.weaponStats.range;
+            fireRate = DataManager.Instance.weaponStats.fireRate;
+            reloadTime = DataManager.Instance.weaponStats.reloadTime;
+            maxAmmo = DataManager.Instance.weaponStats.maxAmmo;
+            maxAmmoPerRifle = DataManager.Instance.weaponStats.maxAmmoPerRifle;
+        }
+
         currentAmmo = maxAmmoPerRifle;
         currentTotalAmmo = maxAmmo;
     }

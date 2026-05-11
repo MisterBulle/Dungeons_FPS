@@ -5508,6 +5508,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883838338}
   m_CullTransparentMesh: 1
+--- !u!1 &892938757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 892938759}
+  - component: {fileID: 892938758}
+  m_Layer: 0
+  m_Name: DataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &892938758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892938757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2325ecd6ff6eb414fa0641fc01cde30c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DataManager
+  playerStats:
+    speed: 5
+    maxSpeed: 10
+    jumpHeight: 2
+    dashingPower: 25
+    dashingTime: 0.25
+    dashingCooldown: 1
+    maxHealth: 100
+    chipSpeed: 2
+  weaponStats:
+    damage: 10
+    range: 100
+    fireRate: 15
+    reloadTime: 2
+    maxAmmo: 180
+    maxAmmoPerRifle: 10
+  enemyStats:
+    sightDistance: 20
+    fieldOfView: 85
+    eyeHeight: 0.5
+    fireRate: 1
+    bulletSpeed: 40
+    damage: 10
+  tankPowerUpStats:
+    speed: 1.5
+    maxSpeed: 2.5
+    jumpHeight: 0.5
+    health: 100
+--- !u!4 &892938759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892938757}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.06497, y: -1.18, z: 87.29564}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901475781
 GameObject:
   m_ObjectHideFlags: 0
@@ -13636,6 +13708,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2117453572}
+  - {fileID: 892938759}
   - {fileID: 1606339432}
   - {fileID: 961707964}
   - {fileID: 1322295999}

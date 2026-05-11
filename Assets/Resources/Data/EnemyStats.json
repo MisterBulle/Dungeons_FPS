@@ -1,0 +1,8 @@
+{
+  "sightDistance": 20.0,
+  "fieldOfView": 85.0,
+  "eyeHeight": 0.5,
+  "fireRate": 1.0,
+  "bulletSpeed": 40.0,
+  "damage": 10.0
+}

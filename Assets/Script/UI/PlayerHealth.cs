@@ -7,13 +7,20 @@ public class PlayerHealth : MonoBehaviour
     public float playerhealth;
 
     private float learpTimer;
-    public float maxHealth = 100f;
-    public float Chipspeed = 2f;
+    public float maxHealth;
+    public float Chipspeed;
     public Image frontHealthBar;
     public Image backHealthBar;
 
     void Start()
     {
+        // Load stats from DataManager
+        if (DataManager.Instance != null)
+        {
+            maxHealth = DataManager.Instance.playerStats.maxHealth;
+            Chipspeed = DataManager.Instance.playerStats.chipSpeed;
+        }
+
         playerhealth = maxHealth;
     }
 

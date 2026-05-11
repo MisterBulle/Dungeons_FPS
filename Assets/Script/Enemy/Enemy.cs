@@ -17,20 +17,31 @@ public class Enemy : MonoBehaviour
     
     public Enemy_Path enemy_path;
     [Header("Sight settings")]
-    public float sightDistance = 20f;
-    public float fieldOfView = 85f;
-    public float eyeHeight = 0.5f;
+    public float sightDistance;
+    public float fieldOfView;
+    public float eyeHeight;
     
     [Header("Weapon settings")]
     public Transform gunBarrel;
     [Range(0.1f,10f)]
     public float fireRate;
-    public float bulletSpeed = 40f;
-    public float damage = 10;
+    public float bulletSpeed;
+    public float damage;
     public Bullet bulletPrefab;
 
     void Start()
     {
+        // Load stats from DataManager
+        if (DataManager.Instance != null)
+        {
+            sightDistance = DataManager.Instance.enemyStats.sightDistance;
+            fieldOfView = DataManager.Instance.enemyStats.fieldOfView;
+            eyeHeight = DataManager.Instance.enemyStats.eyeHeight;
+            fireRate = DataManager.Instance.enemyStats.fireRate;
+            bulletSpeed = DataManager.Instance.enemyStats.bulletSpeed;
+            damage = DataManager.Instance.enemyStats.damage;
+        }
+
         stateMachine = GetComponent<StateMachine>();
         agent = GetComponent<NavMeshAgent>();
         stateMachine.Initialise();
