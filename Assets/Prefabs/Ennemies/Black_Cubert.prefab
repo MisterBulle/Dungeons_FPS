@@ -1497,8 +1497,8 @@ MonoBehaviour:
   fieldOfView: 360
   eyeHeight: 1
   gunBarrel: {fileID: 5841086220811562817}
-  fireRate: 0.5
-  bulletSpeed: 45
+  fireRate: 0.75
+  bulletSpeed: 40
   damage: 5
   bulletPrefab: {fileID: 8728622300054845389, guid: 7c4f5dd84fb5d784c91553380a1ef544, type: 3}
 --- !u!114 &8785181107637583640

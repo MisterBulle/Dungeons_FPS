@@ -591,7 +591,7 @@ MonoBehaviour:
   eyeHeight: 1
   gunBarrel: {fileID: 2697594413178347600}
   fireRate: 0.75
-  bulletSpeed: 35
+  bulletSpeed: 30
   damage: 10
   bulletPrefab: {fileID: 8728622300054845389, guid: 7c4f5dd84fb5d784c91553380a1ef544, type: 3}
 --- !u!114 &5448893425217281383
