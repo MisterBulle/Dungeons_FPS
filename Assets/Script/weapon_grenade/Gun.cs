@@ -81,7 +81,8 @@ public class Gun : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, range))
         {
-            Debug.Log(hit.transform.name);
+            //On voit ce qu'il hit
+            //Debug.Log(hit.transform.name);
             TakeDamage target = hit.transform.GetComponent<TakeDamage>();
             if (target != null)
             {
