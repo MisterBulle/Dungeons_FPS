@@ -16,6 +16,11 @@ public class PowerUpSpawn : MonoBehaviour
     void Start()
     {
         NumberOfSpawnPowerUp = 0;
+        
+        // Initialiser powerUpSave une SEULE fois avec tous les power-ups
+        powerUpSave = new List<GameObject>(powerUpPrefabs);
+        
+        Debug.Log($"PowerUpSpawn.Start: {powerUpSave.Count} power-ups disponibles au total.");
 
         LaunchPowerUpSpawn();
     }
@@ -25,43 +30,42 @@ public class PowerUpSpawn : MonoBehaviour
         // Réinitialiser SpawnPointList à chaque appel
         SpawnPointList = new List<Transform>();
         
-        //Save des powerup
-        powerUpSave = new List<GameObject>(powerUpPrefabs);
+        // Créer une liste TEMPORAIRE pour ce spawn (ne pas toucher à powerUpSave)
+        List<GameObject> availablePowerUps = new List<GameObject>(powerUpSave);
         
-        //On récupère les 3 enfants de spawnPoint
-        for (int i = 0; i <= 2; i++)
+        // Récupérer les points de spawn
+        Transform spawnContainer = spawnPoint[NumberOfSpawnPowerUp].transform;
+        int childCount = spawnContainer.childCount;
+        for (int i = 0; i < childCount; i++)
         {
-            SpawnPointList.Add(spawnPoint[NumberOfSpawnPowerUp].transform.GetChild(i));
+            SpawnPointList.Add(spawnContainer.GetChild(i));
         }
-        ChoicePowerUp();
+        
+        ChoicePowerUp(availablePowerUps);
     }
 
-
-    void ChoicePowerUp()
+    void ChoicePowerUp(List<GameObject> availablePowerUps)
     {
-
         Debug.Log("ChoicePowerUp() appelé");
         Debug.Log("SpawnPointList.Count = " + SpawnPointList.Count);
-        Debug.Log("powerUpSave.Count = " + powerUpSave.Count);
+        Debug.Log("availablePowerUps.Count = " + availablePowerUps.Count);
         
         for (int i = 0; i < SpawnPointList.Count; i++)
         {
             Debug.Log("Boucle itération " + i);
             
-            // Vérifier qu'il y a encore des PowerUp disponibles
-            if (powerUpSave.Count == 0)
+            // Vérifier qu'il y a encore des PowerUp disponibles pour ce spawn
+            if (availablePowerUps.Count == 0)
             {
-                Debug.LogWarning("Plus de PowerUp disponibles !");
+                Debug.LogWarning("Plus de PowerUp disponibles pour ce spawn !");
                 break;
             }
             
-            //4 est exclus
-            int randomnumber = Random.Range(0, powerUpSave.Count);
-            GameObject spawnedPowerUp = Instantiate(powerUpSave[randomnumber], SpawnPointList[i].position, Quaternion.identity, SpawnPointList[i]);
+            // Choisir aléatoirement un power-up
+            int randomnumber = Random.Range(0, availablePowerUps.Count);
+            GameObject spawnedPowerUp = Instantiate(availablePowerUps[randomnumber], SpawnPointList[i].position, Quaternion.identity, SpawnPointList[i]);
             Debug.Log("PowerUp spawnné : " + spawnedPowerUp.name);
             
-             
-
             // Assigner les références manquantes avec Reflection
             PowerUp powerUpComponent = spawnedPowerUp.GetComponentInChildren<PowerUp>();
             if (powerUpComponent != null)
@@ -89,7 +93,8 @@ public class PowerUpSpawn : MonoBehaviour
                 interactPowerUp.PowerUpSpawn = this;
             }
             
-            powerUpSave.RemoveAt(randomnumber);
+            // Retirer du choix TEMPORAIRE seulement (pour éviter les doublons dans ce spawn)
+            availablePowerUps.RemoveAt(randomnumber);
             
             // Initialiser le PowerUp avec le player
             PowerUp powerUp = powerUpComponent;
@@ -117,17 +122,37 @@ public class PowerUpSpawn : MonoBehaviour
         return null;
     }
 
-    public void RemoveChoicePowerUp(string powerUpName)
+    public void RemoveChoicePowerUp(string powerUpTitle)
     {
-        // Rechercher et supprimer le PowerUp de la liste
+        Debug.Log($"RemoveChoicePowerUp appelé avec title: '{powerUpTitle}'");
+        Debug.Log($"powerUpSave.Count au moment de la recherche: {powerUpSave.Count}");
+        
+        // Rechercher et VRAIMENT supprimer le PowerUp de la liste persistante powerUpSave
         for (int i = 0; i < powerUpSave.Count; i++)
         {
-            if (powerUpSave[i].name == powerUpName)
+            PowerUp powerUpComponent = powerUpSave[i].GetComponent<PowerUp>();
+            if (powerUpComponent != null)
             {
-                powerUpSave.RemoveAt(i);
-                break;
+                Debug.Log($"Vérification [{i}]: prefab='{powerUpSave[i].name}', component.title='{powerUpComponent.title}'");
+                
+                // Chercher par title OU par nom du prefab (fallback)
+                bool titleMatch = powerUpComponent.title == powerUpTitle;
+                bool nameMatch = powerUpSave[i].name.Contains(powerUpTitle);
+                
+                if (titleMatch || nameMatch)
+                {
+                    Debug.Log($"✓ Match trouvé ({(titleMatch ? "title" : "name")}). Suppression...");
+                    powerUpSave.RemoveAt(i);
+                    Debug.Log($"✓ PowerUp '{powerUpTitle}' supprimé de powerUpSave. Restants: {powerUpSave.Count}");
+                    return;
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"powerUpSave[{i}] n'a pas de composant PowerUp!");
             }
         }
+        
+        Debug.LogWarning($"✗ PowerUp '{powerUpTitle}' NOT trouvé dans powerUpSave!");
     }
-
 }
