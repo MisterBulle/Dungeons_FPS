@@ -36,6 +36,18 @@ public class Options : MonoBehaviour
         canvas.transform.Find(Menu).gameObject.SetActive(true);
     }
 
+    public void ButtonEnterHTP()
+    {
+        canvas.transform.Find("PanelHTP").gameObject.SetActive(true);
+        canvas.transform.Find(Menu).gameObject.SetActive(false);
+    }
+
+    public void ExitHTPMenu()
+    {
+        canvas.transform.Find("PanelHTP").gameObject.SetActive(false);
+        canvas.transform.Find(Menu).gameObject.SetActive(true);
+    }
+
 
 
 }
